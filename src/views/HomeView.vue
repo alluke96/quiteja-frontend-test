@@ -1,18 +1,28 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <particles-bg type="cobweb" :bg="true" />
+    
+    <v-container>
+      <img alt="QuiteJa Logo" src="@/assets/logo.png">
+  
+      <v-btn @click="goToUsersPage">Usuários</v-btn>
+    </v-container>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import router from '../router';
+import { ParticlesBg } from "particles-bg-vue";
 
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
-  }
+    ParticlesBg
+  },
+  methods: {
+    goToUsersPage() {
+      router.push({ name: 'Usuários', query: { page: 1, limit: 10 } })
+    },
+  },
 }
 </script>

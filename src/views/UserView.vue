@@ -36,12 +36,22 @@
         </template>
 
         <template slot="item.actions" slot-scope="{ item }">
-          <v-btn icon class="mr-2" @click="editUser(item)">
-            <v-icon>mdi-pencil</v-icon>
-          </v-btn>
-          <v-btn icon @click="deleteUser(item)">
-            <v-icon>mdi-delete</v-icon>
-          </v-btn>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn icon class="mr-2" v-bind="attrs" v-on="on" @click="editUser(item)">
+                <v-icon color="blue">mdi-pencil</v-icon>
+              </v-btn>
+            </template>
+            <span>Editar</span>
+          </v-tooltip>
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn icon v-bind="attrs" v-on="on" @click="deleteUser(item)">
+                <v-icon color="red">mdi-delete</v-icon>
+              </v-btn>
+            </template>
+            <span>Excluir</span>
+          </v-tooltip>
         </template>
       </v-data-table>
     </v-container>
