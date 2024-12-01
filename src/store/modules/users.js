@@ -1,5 +1,4 @@
-// store/modules/users.js
-import { fetchUsers, deleteUser, updateUser } from '@/services/apiService';
+import { fetchUsers, deleteUser, updateUser } from '@/services/user';
 
 export default {
   namespaced: true,

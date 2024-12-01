@@ -55,17 +55,24 @@
         </template>
       </v-data-table>
     </v-container>
+
+    <DialogsEditUser :user-to-edit="selectedUser" :dialog-visible="showDialog.edit" @update:dialogVisible="showDialog.edit = $event" @close="showDialog.edit = false" />
+    <DialogsDeleteUser :user-to-delete="selectedUser" :dialog-visible="showDialog.delete" @update:dialogVisible="showDialog.delete = $event" @close="showDialog.delete = false" />
   </DefaultLayout>
 </template>
 
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
+import DialogsEditUser from '@/components/Dialogs/EditUser.vue';
+import DialogsDeleteUser from '@/components/Dialogs/DeleteUser.vue';
 
 export default {
   name: 'UserList',
   components: {
     DefaultLayout,
+    DialogsEditUser,
+    DialogsDeleteUser
   },
   data: () => ({
     headers: [
@@ -76,7 +83,12 @@ export default {
     ],
     search: '',
     sortBy: null,
-    sortDesc: false, 
+    sortDesc: false,
+    showDialog: {
+      edit: false,
+      delete: false,
+    },
+    selectedUser: null
   }),
   computed: {
     ...mapState('users', {
@@ -118,11 +130,13 @@ export default {
     },
 
     editUser(item) {
-      console.log(item);
+      this.showDialog.edit = true;
+      this.selectedUser = item;
     },
     
     deleteUser(item) {
-      console.log(item);
+      this.showDialog.delete = true;
+      this.selectedUser = item;
     }
   },
   created() {

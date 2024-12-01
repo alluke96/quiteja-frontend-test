@@ -5,7 +5,8 @@
     permanent
     mini-variant
     expand-on-hover
-    class="teal darken-1 pa-0"
+    color="#015F6B"
+    class="pa-0"
   >
     <v-list dense nav class="py-4">
       <v-list-item
