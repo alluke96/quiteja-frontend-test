@@ -12,7 +12,7 @@
             <v-col cols="12" sm="6">
               <v-text-field
                 v-model="user.firstName"
-                label="Primeiro Nome"
+                label="Nome"
                 :rules="[v => !!v || 'Este campo é obrigatório', v => (v.length >= 2 && v.length <= 50) || 'O nome deve ter entre 2 e 50 caracteres']"
                 required
               />
@@ -68,7 +68,6 @@
               <v-text-field
                 v-model="user.phone"
                 label="Telefone"
-                :mask="'(###) ###-####'"
                 :rules="[v => !!v || 'Este campo é obrigatório']"
                 required
               />

@@ -1,6 +1,5 @@
 <template>
   <DefaultLayout>
-    <!-- <v-progress-circular indeterminate color="primary" v-if="loading"></v-progress-circular> -->
     <v-container>
       <v-toolbar flat>
         <v-toolbar-title>Usuários</v-toolbar-title>
@@ -111,7 +110,6 @@ export default {
     handleSortChange(sortBy) {
       this.sortBy = sortBy;
       this.sortDesc = !this.sortDesc;
-      this.updateQueryParams();
     },
 
     handleItemsPerPageChange(limit) {
