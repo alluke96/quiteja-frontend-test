@@ -30,7 +30,7 @@
         @update:sort-desc="handleSortChange"
       >
         <template slot="item.picture" slot-scope="{ item }">
-          <v-avatar size="42">
+          <v-avatar size="35">
             <v-img :src="item.picture" :alt="item.firstName"></v-img>
           </v-avatar>
         </template>
@@ -62,14 +62,14 @@ export default {
       { text: 'Avatar', value: 'picture', sortable: false },
       { text: 'Nome', value: 'firstName' },
       { text: 'Sobrenome', value: 'lastName' },
-      { text: 'Ações', value: 'actions', sortable: false },
+      { text: 'Ações', value: 'actions', align: 'end', sortable: false },
     ],
     search: '',
     sortBy: null,
     sortDesc: false, 
   }),
   computed: {
-    ...mapState({
+    ...mapState('users', {
       users: (state) => state.users,
       loading: (state) => state.loading,
       page: (state) => state.currentPage,
@@ -78,8 +78,8 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(['loadUsers']),
-    ...mapMutations(['setPagination']),
+    ...mapActions('users', ['loadUsers']),
+    ...mapMutations('users', ['setPagination']),
     
     handlePageChange(newPage) {
       this.setPagination({ page: newPage, total: this.total, limit: this.limit });
