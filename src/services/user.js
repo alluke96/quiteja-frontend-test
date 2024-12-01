@@ -1,11 +1,4 @@
-import axios from 'axios';
-
-const apiClient = axios.create({
-  baseURL: 'https://dummyapi.io/data/v1/',
-  headers: {
-    'app-id': process.env.VUE_APP_ID,
-  },
-});
+import { apiClient } from './api';
 
 export const fetchUsers = async ({ page, limit }) => {
   try {
