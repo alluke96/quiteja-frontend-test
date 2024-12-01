@@ -41,7 +41,9 @@
             <v-col cols="12" sm="6">
               <v-select
                 v-model="user.gender"
-                :items="['male', 'female', 'other']"
+                :items="[{label:'Masculino',value:'male'}, {label:'Feminino',value:'female'}, {label:'Outro',value:'other'}]"
+                :item-text="item => item.label"
+                :item-value="item => item.value"
                 label="Gênero"
                 :rules="[v => !!v || 'Este campo é obrigatório']"
                 required
@@ -148,9 +150,9 @@
         </v-form>
       </v-card-text>
 
-      <v-card-actions>
+      <v-card-actions class="justify-end">
         <v-btn color="blue" text @click="$emit('close')">Cancelar</v-btn>
-        <v-btn color="blue darken-1" :disabled="!formValid" @click="saveUser">Salvar</v-btn>
+        <v-btn color="green" :disabled="!formValid" @click="saveUser">Salvar</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

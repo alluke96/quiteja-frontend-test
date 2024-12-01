@@ -3,12 +3,11 @@
     <v-card>
       <v-card-title class="headline">Confirmar Exclusão</v-card-title>
       <v-card-text>
-        Tem certeza de que deseja excluir este usuário? Esta ação não pode ser desfeita.
+        Tem certeza de que deseja excluir o(a) usuário(a) <span style="color: red">{{ userToDelete.firstName }} {{ userToDelete.lastName }}</span>? Esta ação não pode ser desfeita.
       </v-card-text>
-      <v-card-actions>
-        <v-btn @click="$emit('close')" color="grey" text>Cancelar</v-btn>
-        
-        <v-btn @click="deleteUser" color="red" text>Deletar</v-btn>
+      <v-card-actions class="justify-end">
+        <v-btn color="blue" text @click="$emit('close')">Cancelar</v-btn>
+        <v-btn color="red" @click="deleteUser">Deletar</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
