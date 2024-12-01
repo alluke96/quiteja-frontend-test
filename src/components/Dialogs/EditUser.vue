@@ -157,6 +157,8 @@
 </template>
 
 <script>
+import { formatDate } from '@/utils/format';
+
 export default {
   props: {
     dialogVisible: {
@@ -191,9 +193,20 @@ export default {
     };
   },
   methods: {
+    async loadUserData() {
+      const user = await this.$store.dispatch('users/fetchUser', this.userToEdit.id);
+      if (user) {
+        this.user = { ...this.user, ...user };
+
+        this.user.dateOfBirth = formatDate(this.user.dateOfBirth);
+      }
+    },
     saveUser() {
       if (this.userToEdit) {
-        this.$store.dispatch('users/editUser', this.userToDelete.id);
+        this.$store.dispatch('users/updateUser', {
+          userId: this.userToEdit.id,
+          updatedData: this.user,
+        });
         this.$toast.success('Usuário editado com sucesso!', {
           position: 'top-right',
           timeout: 3000
@@ -203,8 +216,12 @@ export default {
     },
   },
   watch: {
-    dialogVisible(val) {
+    async dialogVisible(val) {
       this.dialog = val;
+
+      if (val) {
+        await this.loadUserData();
+      }
     },
     dialog(val) {
       this.$emit('update:dialogVisible', val);

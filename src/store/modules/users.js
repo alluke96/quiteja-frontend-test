@@ -1,4 +1,4 @@
-import { fetchUsers, deleteUser, updateUser } from '@/services/user';
+import { fetchUsers, fetchUser, deleteUser, updateUser } from '@/services/user';
 
 export default {
   namespaced: true,
@@ -48,15 +48,19 @@ export default {
         commit('setLoading', false);
       }
     },
-    async deleteUser({ dispatch, commit }, userId) {
+    async fetchUser({ commit }, userId) {
+      commit('setLoading', true);
+      commit('setError', null);
       try {
-        await deleteUser(userId);
-        dispatch('loadUsers');
+        const user = await fetchUser(userId);
+        return user;
       } catch (error) {
-        commit('setError', 'Error deleting user.');
-        console.error('Error deleting user:', error);
+        commit('setError', 'Error fetching user.');
+        console.error('Error fetching user:', error);
+      } finally {
+        commit('setLoading', false);
       }
-    },
+    },    
     async updateUser({ dispatch, commit }, { userId, updatedData }) {
       try {
         await updateUser(userId, updatedData);
@@ -64,6 +68,15 @@ export default {
       } catch (error) {
         commit('setError', 'Error updating user.');
         console.error('Error updating user:', error);
+      }
+    },
+    async deleteUser({ dispatch, commit }, userId) {
+      try {
+        await deleteUser(userId);
+        dispatch('loadUsers');
+      } catch (error) {
+        commit('setError', 'Error deleting user.');
+        console.error('Error deleting user:', error);
       }
     }
   },

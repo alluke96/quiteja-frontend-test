@@ -15,6 +15,16 @@ export const fetchUsers = async ({ page, limit }) => {
   }
 };
 
+export const fetchUser = async (userId) => {
+  try {
+    const response = await apiClient.get(`/user/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    throw error;
+  }
+};
+
 export const updateUser = async (userId, updatedData) => {
   try {
     const response = await apiClient.put(`/user/${userId}`, updatedData);
