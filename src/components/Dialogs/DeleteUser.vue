@@ -33,7 +33,10 @@ export default {
     deleteUser() {
       if (this.userToDelete) {
         this.$store.dispatch('users/deleteUser', this.userToDelete.id);
-        console.log(`Usuário ${this.userToDelete.firstName} ${this.userToDelete.lastName} deletado.`);
+        this.$toast.success('Usuário deletado com sucesso!', {
+          position: 'top-right',
+          timeout: 3000
+        });
       }
       this.$emit('close');
     }

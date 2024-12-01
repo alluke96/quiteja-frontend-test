@@ -192,7 +192,13 @@ export default {
   },
   methods: {
     saveUser() {
-      console.log('Usuário salvo:', this.user);
+      if (this.userToEdit) {
+        this.$store.dispatch('users/editUser', this.userToDelete.id);
+        this.$toast.success('Usuário editado com sucesso!', {
+          position: 'top-right',
+          timeout: 3000
+        });
+      }
       this.$emit('close');
     },
   },
