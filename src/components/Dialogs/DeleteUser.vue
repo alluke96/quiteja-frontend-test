@@ -1,6 +1,6 @@
 <template>
     <v-dialog v-model="dialog" max-width="400px">
-    <v-card>
+    <v-card v-if="userToDelete">
       <v-card-title class="headline">Confirmar Exclusão</v-card-title>
       <v-card-text>
         Tem certeza de que deseja excluir o(a) usuário(a) <span style="color: red">{{ userToDelete.firstName }} {{ userToDelete.lastName }}</span>? Esta ação não pode ser desfeita.

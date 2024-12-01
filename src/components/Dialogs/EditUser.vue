@@ -159,6 +159,7 @@
 
 <script>
 import { formatDate } from '@/utils/format';
+import { User } from '@/models/User';
 
 export default {
   props: {
@@ -174,23 +175,7 @@ export default {
     return {
       dialog: this.dialogVisible,
       formValid: false,
-      user: {
-        firstName: '',
-        lastName: '',
-        title: '',
-        gender: '',
-        email: '',
-        dateOfBirth: '',
-        phone: '',
-        picture: '',
-        location: {
-          street: '',
-          city: '',
-          state: '',
-          country: '',
-          timezone: '',
-        },
-      },
+      user: new User(),
     };
   },
   methods: {
