@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view/>
+    <transition name="fade" mode="out-in">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -24,5 +26,13 @@ nav {
       color: #42b983;
     }
   }
+}
+
+.fade-enter, .fade-leave-to{
+  transition: translateX(3em);
+  opacity: 0;
+}
+.fade-enter-active, .fade-leave-active{
+  transition: all .3s ease;
 }
 </style>
