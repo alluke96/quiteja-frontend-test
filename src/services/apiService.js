@@ -11,7 +11,7 @@ export const fetchUsers = async ({ page, limit }) => {
   try {
     const response = await apiClient.get('/user', {
       params: {
-        offset: (page - 1) * limit,
+        page,
         limit,
       },
     })
